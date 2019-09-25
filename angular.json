@@ -27,7 +27,6 @@
               "src/styles.css"
             ],
             "scripts": [
-              "node_modules/slideout/dist/slideout.min.js"
             ]
           },
           "configurations": {

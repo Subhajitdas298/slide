@@ -1,5 +1,11 @@
-import { Component, OnInit, ElementRef } from '@angular/core';
-import * as Slideout from 'node_modules/slideout';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
+import { fromEvent } from 'rxjs';
+import {
+  debounceTime,
+  map,
+  distinctUntilChanged,
+  filter
+} from 'rxjs/operators';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -7,20 +13,29 @@ import * as Slideout from 'node_modules/slideout';
 })
 export class AppComponent implements OnInit {
 
-  slideout: Slideout;
+  constructor(private elRef: ElementRef) {}
 
-  constructor(private elRef:ElementRef) {}
+  @ViewChild('panel', {static: true}) panel: ElementRef<HTMLDivElement>;
 
   ngOnInit(): void {
-    this.slideout = new Slideout({
-      'panel': this.elRef.nativeElement.querySelector('#panel'),
-      'menu': this.elRef.nativeElement.querySelector('#menu'),
-      'padding': 256,
-      'tolerance': 70
-    });
+    fromEvent(this.panel.nativeElement, 'scroll').pipe(
+      // get value
+      map((event: any) => {
+        return event.target.value;
+      }),
+      debounceTime(100)
+    ).subscribe(() => this.updatePosition());
   }
 
-  toggle() {
-    this.slideout.toggle();
+  updatePosition(){
+    const secondPostion = this.panel.nativeElement.scrollWidth; // max scroll
+    const threshold = this.panel.nativeElement.scrollWidth * 35 / 170; // 70 + 30 + 70 = 170
+    // console.log(secondPostion + ' ' + threshold + ' ' + this.panel.nativeElement.scrollLeft);
+    const options: ScrollToOptions = {
+      top: 0,
+      left: (this.panel.nativeElement.scrollLeft > threshold) ? secondPostion : 0 ,
+      behavior: 'smooth'
+    };
+    this.panel.nativeElement.scrollTo(options);
   }
 }

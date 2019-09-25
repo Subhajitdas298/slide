@@ -1,11 +1,75 @@
-main {
-    margin: 0px;
+/*
+#main {
+    width: 70%;
+    height: 99.9vh;
+    z-index: 0;
+
+    background-color: grey;
+    padding: 2px;
+    border: 1px grey solid;
+}
+
+#main-panel {
+    width: 100%;
+    height: inherit;
+    float: left;
+
+    background-color: aqua;
+}
+
+#side {
+    width: 99.9vw;
+    height: 99.9vh;
+    position: fixed;
+    left: 70vw;
+    z-index: 99;
+
+    background-color: red;
+    border: 1px red solid;
+    padding: 2px;
+}
+
+#summary-panel {
+    width: 30vw;
+    height: 99.9vh;
+    float: left;
+
+    background-color: blue;
+}
+
+#menu {
+    width: 70vw;
+    height: 99.9vh;
+    float: right;
+
+    background-color: green;
+}
+*/
+
+#main{
+    width: 70vw;
     height: 100%;
+    float: left;
+
     background-color: red;
 }
 
-div {
-    margin: 0px;
+#weather{
+    width: 30vw;
     height: 100%;
-    background-color: blue;
+    float: left;
+
+    background-color: grey;
+}
+
+#menu{
+    width: 70vw;
+    height: 100%;
+    float: left;
+
+    background-color: green;
+}
+
+.scroll-panel{
+    overflow-x: auto;
 }

@@ -1,33 +1,25 @@
-body {
-    width: 100%;
-    height: 100%;
-  }
+html, body {
+  padding: 0px;
+  margin: 0px;
 
-  .slideout-menu {
-    position: fixed;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    z-index: 0;
-    width: 256px;
-    overflow-y: hidden;
-    -webkit-overflow-scrolling: touch;
-    display: none;
-  }
+  height: 100%;
+  width: 100%;
+}
 
-  .slideout-panel {
-    position: relative;
-    z-index: 1;
-    will-change: transform;
-  }
+.full-height{
+  height: 100%;
+}
 
-  .slideout-open,
-  .slideout-open body,
-  .slideout-open .slideout-panel {
-    overflow: hidden;
-  }
+.all-panel{
+  height: 100%;
+  width: 170vw;
+}
 
-  .slideout-open .slideout-menu {
-    display: block;
-  }
+.no-scroll-container {
+  -ms-overflow-style: none;  /* IE 10+ */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.no-scroll-container::-webkit-scrollbar { 
+  display: none;  /* Safari and Chrome */
+}
