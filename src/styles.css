@@ -10,6 +10,10 @@ html, body {
   height: 100%;
 }
 
+.full-width{
+  height: 100%;
+}
+
 .all-panel{
   height: 100%;
   width: 170vw;
