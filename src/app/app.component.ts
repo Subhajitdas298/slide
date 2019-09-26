@@ -7,6 +7,7 @@ import {
   filter
 } from 'rxjs/operators';
 import { LatLongService } from './lat-long.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -14,7 +15,7 @@ import { LatLongService } from './lat-long.service';
 })
 export class AppComponent implements OnInit {
 
-  constructor(private latLongService: LatLongService) {}
+  constructor(private latLongService: LatLongService, private router: Router) {}
 
   @ViewChild('panel', {static: true}) panel: ElementRef<HTMLDivElement>;
 
@@ -43,4 +44,15 @@ export class AppComponent implements OnInit {
     };
     this.panel.nativeElement.scrollTo(options);
   }
+
+  navigate(location) {
+    this.router.navigate([location]);
+    const options: ScrollToOptions = {
+      top: 0,
+      left: 0 ,
+      behavior: 'smooth'
+    };
+    this.panel.nativeElement.scrollTo(options);
+  }
+
 }
