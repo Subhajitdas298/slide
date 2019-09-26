@@ -4,9 +4,12 @@
 
 export const environment = {
   production: false,
+  signageId: 234,
+  latLongApi: 'some',
   imgApi: 'http://openweathermap.org/img/wn',
   weatherApi: 'http://api.openweathermap.org/data/2.5',
-  weatherApiKey: '942c2543773e2adc9e0814a0d533e576'
+  weatherApiKey: '942c2543773e2adc9e0814a0d533e576',
+  forecastCount: 1
 };
 
 /*

@@ -3,6 +3,7 @@ import { interval } from 'rxjs';
 import { WeatherService } from './weather.service';
 import { environment } from 'src/environments/environment';
 import { Weather } from '../model/weather';
+import { LatLong } from '../model/lat-long';
 
 @Component({
   selector: 'app-weather-panel',
@@ -12,6 +13,7 @@ import { Weather } from '../model/weather';
 export class WeatherPanelComponent implements OnInit {
 
   imgApiBaseUrl: string;
+  latLong: LatLong;
 
   currentTime: Date;
   clockTimer;
@@ -23,6 +25,9 @@ export class WeatherPanelComponent implements OnInit {
 
   ngOnInit() {
     this.imgApiBaseUrl = environment.imgApi;
+    // this.latLong = JSON.parse(sessionStorage.getItem('latLong'));
+    this.latLong = {lat: 12, long: 77};
+
     this.updateClock();
     this.updateWeather();
 
@@ -38,7 +43,7 @@ export class WeatherPanelComponent implements OnInit {
   }
 
   updateWeather() {
-    this.weatherService.getCurrentWeather().subscribe(weather => {
+    this.weatherService.getCurrentWeather(this.latLong).subscribe(weather => {
       const w = new Weather();
       w.weatherType = weather.weather[0].id;
       w.description = weather.weather[0].description;
@@ -55,13 +60,11 @@ export class WeatherPanelComponent implements OnInit {
       this.weathers = [];
       this.weathers[0] = w;
 
-      this.weatherService.getWeatherForecast().subscribe(forecasts => {
-
-        console.log(forecasts)
+      this.weatherService.getWeatherForecast(this.latLong).subscribe(forecasts => {
 
         forecasts.list = forecasts.list.filter((forecastEntry) => {
           return (new Date(forecastEntry.dt * 1000) > this.currentTime);
-        });
+        }).splice(0, environment.forecastCount);
 
         const w2 = new Weather();
         w2.weatherType = forecasts.list[0].weather[0].id;

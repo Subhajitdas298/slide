@@ -6,6 +6,7 @@ import {
   distinctUntilChanged,
   filter
 } from 'rxjs/operators';
+import { LatLongService } from './lat-long.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -13,11 +14,15 @@ import {
 })
 export class AppComponent implements OnInit {
 
-  constructor(private elRef: ElementRef) {}
+  constructor(private latLongService: LatLongService) {}
 
   @ViewChild('panel', {static: true}) panel: ElementRef<HTMLDivElement>;
 
   ngOnInit(): void {
+    this.latLongService.getLatLong().subscribe((latLong) => {
+      sessionStorage.setItem('latLong', JSON.stringify(latLong));
+    });
+    
     fromEvent(this.panel.nativeElement, 'scroll').pipe(
       // get value
       map((event: any) => {

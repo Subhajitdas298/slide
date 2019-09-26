@@ -1,6 +1,6 @@
 <div class="full-width">
     <div class="text-center pt-4 pb-4">
-        <h2 style="display: inline">{{ currentTime | date : 'h:mm' }}</h2>
+        <h1 style="display: inline">{{ currentTime | date : 'h:mm' }}</h1>
         <h4 style="display: inline">{{ currentTime | date : ' a' }}</h4>
     </div>
     <div class="text-center pt-4 pb-4">
@@ -8,10 +8,19 @@
     </div>
     <div class=" container-fluid">
         <div class="row text-center pt-4 pb-4">
-            <div class="col-sm-6" *ngFor="let w of weathers; let i = index" (click)="openSuggestions(i)">
-                <img [src]="imgApiBaseUrl + '/' + w.icon + '.png'">
-                <div class="text-center">{{ w.weatherTypeString }}</div>
-                <div class="text-center">{{ w.dateTime | date : 'h:mm a' }}</div>
+            <div class="col-sm-12" *ngFor="let w of weathers; let i = index">
+                <div class="row mb-3">
+                    <div class="col-sm-3">
+                        <img [src]="imgApiBaseUrl + '/' + w.icon + '.png'">
+                    </div>
+                    <div class="col-sm-9 mb-2">
+                        <div class="text-center mb-1">{{ w.weatherTypeString }}</div>
+                        <div class="text-center">{{ w.dateTime | date : 'h:mm a' }}</div>
+                    </div>
+                    <div class="full-width col-sm-12 text-center">
+                        <button class="flash text-center btn btn-block"  (click)="openSuggestions(i)">Suggest rides</button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
