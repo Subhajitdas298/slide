@@ -1,5 +1,18 @@
 <div class="full-width">
-    <div>
-        {{  }}
+    <div class="text-center pt-4 pb-4">
+        <h2 style="display: inline">{{ currentTime | date : 'h:mm' }}</h2>
+        <h4 style="display: inline">{{ currentTime | date : ' a' }}</h4>
+    </div>
+    <div class="text-center pt-4 pb-4">
+        <h4>{{ currentTime | date : 'dd-MM-yyyy' }}</h4>
+    </div>
+    <div class=" container-fluid">
+        <div class="row text-center pt-4 pb-4">
+            <div class="col-sm-6" *ngFor="let w of weathers; let i = index" (click)="openSuggestions(i)">
+                <img [src]="imgApiBaseUrl + '/' + w.icon + '.png'">
+                <div class="text-center">{{ w.weatherTypeString }}</div>
+                <div class="text-center">{{ w.dateTime | date : 'h:mm a' }}</div>
+            </div>
+        </div>
     </div>
 </div>

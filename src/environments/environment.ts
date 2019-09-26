@@ -4,6 +4,7 @@
 
 export const environment = {
   production: false,
+  imgApi: 'http://openweathermap.org/img/wn',
   weatherApi: 'http://api.openweathermap.org/data/2.5',
   weatherApiKey: '942c2543773e2adc9e0814a0d533e576'
 };

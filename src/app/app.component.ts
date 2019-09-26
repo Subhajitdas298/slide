@@ -29,7 +29,7 @@ export class AppComponent implements OnInit {
 
   updatePosition(){
     const secondPostion = this.panel.nativeElement.scrollWidth; // max scroll
-    const threshold = this.panel.nativeElement.scrollWidth * 35 / 170; // 70 + 30 + 70 = 170
+    const threshold = this.panel.nativeElement.scrollWidth * 40 / 180; // 70 + 30 + 70 = 170
     // console.log(secondPostion + ' ' + threshold + ' ' + this.panel.nativeElement.scrollLeft);
     const options: ScrollToOptions = {
       top: 0,
