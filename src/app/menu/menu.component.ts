@@ -15,6 +15,7 @@ export class MenuComponent implements OnInit {
   }
 
   navigate(location) {
+    console.log(location)
     this.choose.emit(location);
   }
 
